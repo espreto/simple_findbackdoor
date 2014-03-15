@@ -1,10 +1,10 @@
-Description:
+**Description:**
 
 Simple script for detect possible backdoors in files PHP. (Good for the Wordpress PHP files.)
 
 
-Usage:
-
+**Usage:**
+```
 $ ./findbackdoor.sh 
 
  Opção Inválida!
@@ -15,12 +15,12 @@ $ ./findbackdoor.sh
 
 $ ./findbackdoor.sh /home/espreto/Test/Plugin_WP/ 1
 
-[+] Possible webshell found! \n
+[+] Possible webshell found!
 /home/espreto/Test/Plugin_WP/example/r57.php
 
 $ ./findbackdoor.sh /home/espreto/Test/Plugins_WP/ 2
 
-[+] Possible danger function!\n
+[+] Possible danger function!
 /home/espreto/Test/Plugins_WP/i.php
 
 1-<?php
@@ -34,9 +34,9 @@ $ ./findbackdoor.sh /home/espreto/Test/Plugins_WP/ 2
 9-?>
 
 $
+```
 
-
-TODO:
+**TODO:**
 
 Missing some features, but it's a start. 
 Please PR me. ;)
