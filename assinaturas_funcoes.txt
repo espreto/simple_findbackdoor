@@ -1,4 +1,5 @@
 apache_child_terminate(
+array_diff_ukey(
 base64_decode(
 changelog(
 curl_exec(
@@ -20,6 +21,7 @@ posix_mkfifo(
 posix_setpgid(
 posix_setsid(
 posix_setuid(
+preg_replace(
 proc_close(
 proc_get_status(
 proc_nice(
