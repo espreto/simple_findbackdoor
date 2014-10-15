@@ -1,0 +1,42 @@
+#/bin/bash
+
+echo
+DIR=$1
+OPTION=$2
+NUMBER=$3
+
+if [ -z "$NUMBER" ]; then
+  VALUE="5"
+else
+  VALUE="$NUMBER"
+fi
+
+DATA=$(date +%d%m%Y-%H%M%S)
+LOGWEB="logs/find-webshells.$DATA.log"
+LOGFUNC="logs/find-functions.$DATA.log"
+
+if [ "$OPTION" = 1 ]; then
+  echo -e "\e[00;32m[+]\e[00m Possible webshell found! "
+  FILENAME=$(find "$DIR" -iname "*.php" -type f | grep -if $(pwd)/assinaturas_webshells.txt 2>/dev/null | tee "$LOGWEB")
+  echo -e "\e[00;31m$FILENAME\e[00m\n"
+
+elif [ "$OPTION" = 2 ]; then
+  echo -e "\e[00;32m[+]\e[00m Possible dangerous function!"
+  FILENAME=$(find "$DIR" -iname "*.php" -type f -exec sh -c 'fgrep -q -C'"$VALUE"' -n -i -f assinaturas_funcoes.txt {} && echo "{}";' \;)
+  echo -e "\e[00;32m[+]\e[00m Last modification in \e[00;31m$FILENAME\e[00m: `stat -c '%y' $FILENAME`"
+  echo
+  RESULT=$(fgrep --color=always -C"$VALUE" -n -i -f assinaturas_funcoes.txt "$FILENAME")
+  echo -e "$RESULT\n" | tee "$LOGFUNC"
+
+else
+  OUTPUT="
+   \e[00;31mInvalid option!\e[00m
+
+   Use: ./findbackdoor.sh <directory scan> <1 or 2> <lines>
+   1 = WebShells
+   2 = Functions ( <lines> is the number of lines before and after the match (default: 5) )
+  "
+  echo -e "$OUTPUT"
+fi
+
+exit 0
