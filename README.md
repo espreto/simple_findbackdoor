@@ -5,23 +5,23 @@ Simple script for detect possible backdoors in files PHP. (Good for the Wordpres
 
 **Usage:**
 ```
-$ ./findbackdoor.sh 
+$ ./findbackdoor 
 
- Opção Inválida!
+   Invalid option!
 
- Use: ./findbackdoor.sh <diretorio para o scan> <1 ou 2>
-  1 = WebShells
-  2 = Functions
+   Use: ./findbackdoor.sh <directory scan> <1 or 2> <lines>
+   1 = WebShells
+   2 = Functions ( <lines> is the number of lines before and after the match (default: 5) )
 
-$ ./findbackdoor.sh /home/espreto/Test/Plugin_WP/ 1
+$ ./findbackdoor /tmp/teste/ 1
 
-[+] Possible webshell found!
-/home/espreto/Test/Plugin_WP/example/r57.php
+[+] Possible webshell found! 
+/tmp/teste/c99.php
 
-$ ./findbackdoor.sh /home/espreto/Test/Plugins_WP/ 2
+$ ./findbackdoor /tmp/teste/ 2
 
-[+] Possible danger function!
-/home/espreto/Test/Plugins_WP/i.php
+[+] Possible dangerous function!
+[+] Last modification in /tmp/teste/ha.php: 2014-10-15 02:14:38.163231500 -0300
 
 1-<?php
 2-if(isset($_REQUEST[‘cmd’])){
@@ -33,7 +33,16 @@ $ ./findbackdoor.sh /home/espreto/Test/Plugins_WP/ 2
 8-}
 9-?>
 
-$
+$ ./findbackdoor /tmp/teste/ 2 1
+
+[+] Possible dangerous function!
+[+] Last modification in /tmp/teste/ha.php: 2014-10-15 02:14:38.163231500 -0300
+
+4-        $cmd = ($_REQUEST[‘cmd’]);
+5:        system($cmd);
+6-        echo "</pre>";
+
+$ 
 ```
 
 **TODO:**
@@ -41,6 +50,5 @@ $
 Missing some features, but it's a start. 
 Please PR me. ;)
 
-
-[]s
+[]'s
 
