@@ -5,7 +5,7 @@ Simple script for detect possible backdoors in files PHP. (Good for the Wordpres
 
 **Usage:**
 ```
-$ ./findbackdoor 
+$ ./findbackdoor
 
    Invalid option!
 
@@ -15,7 +15,7 @@ $ ./findbackdoor
 
 $ ./findbackdoor /tmp/teste/ 1
 
-[+] Possible webshell found! 
+[+] Possible webshell found!
 /tmp/teste/c99.php
 
 $ ./findbackdoor /tmp/teste/ 2
@@ -42,13 +42,20 @@ $ ./findbackdoor /tmp/teste/ 2 1
 5:        system($cmd);
 6-        echo "</pre>";
 
-$ 
+$
 ```
 
 **TODO:**
 
-Missing some features, but it's a start. 
-Please PR me. ;)
+Missing some features, but it's a start.
+
+**Contributing**
+
+1. Fork it
+2. Create your feature branch (git checkout -b my-new-feature)
+3. Commit your changes (git commit -am 'Add some feature')
+4. Push to the branch (git push origin my-new-feature)
+5. Create new Pull Request
 
 []'s
 
